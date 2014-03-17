@@ -1,5 +1,5 @@
 
-var app = angular.module("myApp", ["dsl.test"]);
+var app = angular.module("myApp", ["dsl.dnd"]);
 
 app.controller("dslConfigController", ["$scope", "$http", function($scope, $http){
 	$scope.showConfig = true;
@@ -21,15 +21,3 @@ app.directive("dslConfigPanel", function(){
 		templateUrl: 'html/dslConfigPanel.html'
 	};
 });
-
-
-
-/*function dslConfigPanel() {
-	return {
-		restrict: 'E',
-		replace: false,
-		scope: true,
-		require: '?ngModel',
-		templateUrl: 'html/dslConfigPanel.html'
-	};
-};*/
