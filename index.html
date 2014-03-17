@@ -1,0 +1,25 @@
+<!doctype html>
+<html ng-app="myApp" >
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+	<!-- 
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
+	
+	<!-- <script type="text/javascript" src="bc/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
+	<script type="text/javascript" src="js/dsl.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body ng-controller="dslConfigController">
+	<dnd-Target></dnd-Target>
+
+	<input type="checkbox" ng-model="showConfig"></input>	
+
+	<dsl-config-panel />
+
+	
+</body>
+</html>

@@ -1,0 +1,8 @@
+<div ng-show="showConfig">
+	<h1>{{ title }}</h1>
+	<ul>
+		<li ng-repeat="command in commands">
+			<button type="button" ng-disabled="!command.canDo" ng-click="command.action()">{{ command.title }}</button>
+		</li>
+	</ul>
+</div>
