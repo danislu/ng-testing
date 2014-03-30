@@ -1,9 +1,0 @@
-.ng-hide {
-  //!annotate CSS Specificity|Not to worry, this will override the AngularJS default...
-  display:block!important;
- 
-  //this is just another form of hiding an element
-  position:absolute;
-  top:-9999px;
-  left:-9999px;
-}

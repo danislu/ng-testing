@@ -1,0 +1,12 @@
+<div class="row">
+
+    <div class="col-md-6">
+        <h1>{{ selectedItem.Name }}</h1>
+        <h4>{{ selectedItem.LastRan | date:"fullDate" }}</h4>
+        {{ selectedItem.Length | number:5 }} km
+    </div>
+    <div class="col-md-6">
+        <img src="http://static4.depositphotos.com/1030387/400/v/950/depositphotos_4009968-Marathon-Finish-Line.jpg" alt="when you see it" class="img-circle">
+    </div>
+
+</div>

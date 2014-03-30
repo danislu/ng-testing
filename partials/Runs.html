@@ -1,0 +1,38 @@
+<div>
+
+    <h1>Runs</h1>
+    <button class="btn btn-danger" ng-disabled="items.length == 0" ng-click="clear()">Delete All</button>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+
+            <table class="table table-striped">
+                <thead>
+                <tr><th>Were</th><th>Length</th><th>When</th><th>Delete</th></tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in items">
+                    <td><a href="#/runs/{{item.id}}">{{ item.Name }}</a> </td>
+                    <td>{{ item.Length | number:2 }} km</td>
+                    <td>{{ item.LastRan | date:"fullDate" }}</td>
+                    <td><button class="btn-danger" ng-click="removeItem(item)">Delete</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="col-xs-6 col-md-4">
+
+            <form class="form-inline" role="form" name="myForm">
+                <input type="text" ng-model="newItem.name" placeholder="Were was this??" ng-minlength="2" required />
+                <input type="number" ng-model="newItem.length" placeholder="How long was it?" ng-minlength="1" required />
+
+                <button ng-disabled="myForm.$invalid" class="btn btn-success" ng-click="addItem()">Add</button>
+            </form>
+
+
+        </div>
+    </div>
+
+</div>
