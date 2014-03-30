@@ -4,6 +4,9 @@
         <h1>{{ selectedItem.Name }}</h1>
         <h4>{{ selectedItem.LastRan | date:"fullDate" }}</h4>
         {{ selectedItem.Length | number:5 }} km
+
+        <h3>Action</h3>
+        <button class="btn btn-danger btn-sm" ng-click="deleteItem()">Delete</button>
     </div>
     <div class="col-md-6">
         <img src="http://static4.depositphotos.com/1030387/400/v/950/depositphotos_4009968-Marathon-Finish-Line.jpg" alt="when you see it" class="img-circle">

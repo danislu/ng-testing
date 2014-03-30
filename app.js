@@ -38,14 +38,14 @@ var dsl = angular.module("dsl", ['ngRoute']).config(function ($routeProvider) {
 
         tracksFactory.Clear();
     };
-}).controller("RunDetailsController", function ($scope, $routeParams, tracksFactory) {
-    var runs = tracksFactory.Tracks.filter(function (item) {
-        return item.id == $routeParams.id;
-    });
-    if (runs.length == 1) {
-        var item = runs[0];
-        $scope.selectedItem = item;
-    }
+}).controller("RunDetailsController", function ($scope, $location, $routeParams, tracksFactory) {
+    $scope.selectedItem = tracksFactory.GetTrack($routeParams.id);
+
+    $scope.deleteItem = function () {
+        tracksFactory.RemoveTrack($scope.selectedItem);
+
+        $location.path('#/');
+    };
 }).factory("tracksFactory", [
     "RunningTrackStorageFactory", function (RunningTrackStorageFactory) {
         var factory = RunningTrackStorageFactory;
@@ -79,13 +79,12 @@ function RunningTrackStorageFactory() {
 }
 
 var RunningTrack = (function () {
-    function RunningTrack(Name, Length, LastRan, id) {
+    function RunningTrack(Name, Length, LastRan) {
         if (typeof LastRan === "undefined") { LastRan = new Date(); }
-        if (typeof id === "undefined") { id = GUIDGenerator.CreateGUID(); }
         this.Name = Name;
         this.Length = Length;
         this.LastRan = LastRan;
-        this.id = id;
+        this.id = GUIDGenerator.CreateGUID();
     }
     return RunningTrack;
 })();
@@ -111,6 +110,13 @@ var RunningTracks = (function () {
     RunningTracks.prototype.Clear = function () {
         this.store.clear();
         this.Tracks.splice(0, this.Tracks.length);
+    };
+
+    RunningTracks.prototype.GetTrack = function (id) {
+        var runs = this.Tracks.filter(function (item) {
+            return item.id == id;
+        });
+        return (runs.length > 0) ? runs[0] : null;
     };
 
     RunningTracks.prototype.AddTrack = function (item) {

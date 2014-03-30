@@ -44,21 +44,23 @@ var dsl = angular.module("dsl", ['ngRoute'])
 
         $scope.newItem.name = '';
         $scope.newItem.length = 0;
-    }
+    };
 
     $scope.clear = function() {
         if(!confirm("Really delete all?"))
             return;
 
         tracksFactory.Clear();
-    }
+    };
 })
 
-.controller("RunDetailsController", function($scope, $routeParams, tracksFactory : RunningTracks) {
-    var runs = tracksFactory.Tracks.filter(function(item) { return item.id == $routeParams.id; });
-    if (runs.length == 1) {
-        var item : RunningTrack = runs[0];
-        $scope.selectedItem = item;
+.controller("RunDetailsController", function($scope, $location, $routeParams, tracksFactory : RunningTracks) {
+    $scope.selectedItem = tracksFactory.GetTrack($routeParams.id);
+
+    $scope.deleteItem = function() {
+        tracksFactory.RemoveTrack($scope.selectedItem);
+
+        $location.path('#/');
     }
 })
 
@@ -106,7 +108,10 @@ function RunningTrackStorageFactory() : IRunningTrackStorage {
 }
 
 class RunningTrack {
-    constructor(public Name: string, public Length: number, public LastRan: Date = new Date(), public id: string = GUIDGenerator.CreateGUID()) { }
+
+    public id: string = GUIDGenerator.CreateGUID();
+
+    constructor(public Name: string, public Length: number, public LastRan: Date = new Date()) {}
 }
 
 class GUIDGenerator {
@@ -133,6 +138,13 @@ class RunningTracks {
     public Clear() {
         this.store.clear();
         this.Tracks.splice(0, this.Tracks.length);
+    }
+
+    public GetTrack(id : string) : RunningTrack {
+        var runs = this.Tracks.filter(function(item) { return item.id == id; });
+        return (runs.length > 0)
+            ? runs[0]
+            : null;
     }
 
     public AddTrack(item: RunningTrack){
