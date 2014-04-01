@@ -3,12 +3,16 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/app.js" />
+        <item url="file://$PROJECT_DIR$/model/runningtrack.js" />
         <item url="file://$PROJECT_DIR$/services/localStorage.js" />
+        <item url="file://$PROJECT_DIR$/model/guidgenerator.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/model/runningtrack.js" />
       <root url="file://$PROJECT_DIR$/app.js" />
       <root url="file://$PROJECT_DIR$/services/localStorage.js" />
+      <root url="file://$PROJECT_DIR$/model/guidgenerator.js" />
     </CLASSES>
     <SOURCES />
   </library>

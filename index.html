@@ -20,7 +20,7 @@
     </style>
 </head>
 
-<body>
+<body ng-app="dsl">
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">danislu.com:angular-test</a>
+            <a class="navbar-brand" href="#">dsl:angular-test</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<div class="container" role="main" ng-app="dsl">
+<div class="container" role="main">
 
     <ng-view></ng-view>
 
@@ -54,6 +54,8 @@
 <script src="js/angular.js"></script>
 <script src="js/angular-route.js"></script>
 <script src="services/localStorage.js"></script>
+<script src="model/guidgenerator.js"></script>
+<script src="model/runningtrack.js"></script>
 <script src="app.js"></script>
 
 </body>
