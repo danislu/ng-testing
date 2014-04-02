@@ -2,17 +2,23 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/dsl/Run.js" />
         <item url="file://$PROJECT_DIR$/app.js" />
-        <item url="file://$PROJECT_DIR$/model/runningtrack.js" />
-        <item url="file://$PROJECT_DIR$/services/localStorage.js" />
-        <item url="file://$PROJECT_DIR$/model/guidgenerator.js" />
+        <item url="file://$PROJECT_DIR$/all.js" />
+        <item url="file://$PROJECT_DIR$/dsl/RunStorage.js" />
+        <item url="file://$PROJECT_DIR$/dsl/utils/localStorage.js" />
+        <item url="file://$PROJECT_DIR$/vm.js" />
+        <item url="file://$PROJECT_DIR$/dsl/utils/guidgenerator.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/model/runningtrack.js" />
       <root url="file://$PROJECT_DIR$/app.js" />
-      <root url="file://$PROJECT_DIR$/services/localStorage.js" />
-      <root url="file://$PROJECT_DIR$/model/guidgenerator.js" />
+      <root url="file://$PROJECT_DIR$/dsl/Run.js" />
+      <root url="file://$PROJECT_DIR$/all.js" />
+      <root url="file://$PROJECT_DIR$/dsl/RunStorage.js" />
+      <root url="file://$PROJECT_DIR$/dsl/utils/localStorage.js" />
+      <root url="file://$PROJECT_DIR$/dsl/utils/guid.js" />
+      <root url="file://$PROJECT_DIR$/dsl/RunController.js" />
     </CLASSES>
     <SOURCES />
   </library>

@@ -1,73 +1,62 @@
-/// <reference path="includes/angularjs/angular.d.ts" />
-/// <reference path="includes/angularjs/angular-route.d.ts" />
-/// <reference path="model/runningtrack.ts" />
+/// <reference path="all.ts" />
 
-var dsl = angular.module("dsl", ['ngRoute'])
+angular.module("dsl", ['ngRoute'])
 
-.config(function($routeProvider){
-    $routeProvider
-        .when('/runs',
+    .config(function($routeProvider){
+        $routeProvider
+            .when('/runs',
             {
-                controller: "RunListController",
+                controller: "RunViewModel",
                 templateUrl: 'partials/Runs.html'
             })
-        .when('/runs/:id',
+            .when('/runs/:id',
             {
-                controller: "RunDetailsController",
+                controller: "DetailsViewModel",
                 templateUrl: "partials/RunDetails.html"
             })
-        .when('/whatever',
+            .when('/whatever',
             {
                 controller: "WhateverController",
                 templateUrl: "partials/whatever.html"
             })
-        .otherwise({ redirectTo : '/runs' });
-})
+            .otherwise({ redirectTo : '/runs' });
+    })
 
-.controller("WhateverController", function($scope){
-    $scope.title = "whatever";
-})
+    .controller("RootController", function($scope, $location){
+        $scope.location = $location;
+    })
 
-.controller("RunListController", function($scope, tracksFactory : RunningTracks){
-    $scope.items = tracksFactory.Tracks;
+    .controller("WhateverController", function($scope){
+        $scope.title = "whatever";
+    })
 
-    $scope.removeItem = function(item){
-        if(!confirm("Are you sure?"))
-            return;
+    .controller("RunViewModel", function($scope, runController : RunController){
+        $scope.items = runController.Tracks;
+        $scope.removeItem = function(item){
+            if(!confirm("Are you sure?")) return;
+            runController.RemoveTrack(item);
+        };
+        $scope.addItem = function() {
+            var track = new Run($scope.newItem.name, $scope.newItem.length);
+            runController.AddTrack(track);
+            $scope.newItem.name = '';
+            $scope.newItem.length = 0;
+        };
+        $scope.clear = function() {
+            if(!confirm("Really delete all?")) return;
+            runController.Clear();
+        };
+    })
 
-        tracksFactory.RemoveTrack(item);
-    };
+    .controller("DetailsViewModel", function($scope, $location, $routeParams, runController : RunController) {
+        $scope.selectedItem = runController.GetTrack($routeParams.id);
+        $scope.deleteItem = function() {
+            runController.RemoveTrack($scope.selectedItem);
+            $scope.selectedItem = null;
+            $location.path('#/');
+        }
+    })
 
-    $scope.addItem = function() {
-        var track = new RunningTrack($scope.newItem.name, $scope.newItem.length);
-        tracksFactory.AddTrack(track);
-
-        $scope.newItem.name = '';
-        $scope.newItem.length = 0;
-    };
-
-    $scope.clear = function() {
-        if(!confirm("Really delete all?"))
-            return;
-
-        tracksFactory.Clear();
-    };
-})
-
-.controller("RunDetailsController", function($scope, $location, $routeParams, tracksFactory : RunningTracks) {
-    $scope.selectedItem = tracksFactory.GetTrack($routeParams.id);
-
-    $scope.deleteItem = function() {
-        tracksFactory.RemoveTrack($scope.selectedItem);
-
-        $location.path('#/');
-    }
-})
-
-.factory("tracksFactory", ["RunningTrackStorageFactory", function(RunningTrackStorageFactory) : RunningTracks {
-        var factory = RunningTrackStorageFactory;
-        return new RunningTracks(factory);
-}])
-
-.factory("RunningTrackStorageFactory", RunningTrackStorageFactory);
-
+    .service("runController", function() : RunController {
+        return new RunController(new RunStorage);
+    });

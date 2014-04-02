@@ -1,21 +1,22 @@
 <div>
 
-    <h1>Runs</h1>
-    <button class="btn btn-danger" ng-disabled="items.length == 0" ng-click="clear()">Delete All</button>
+    <h1>Runs <button class="btn btn-danger btn-xs" ng-disabled="items.length == 0" ng-click="clear()">Delete All</button></h1>
 
     <div class="row">
         <div class="col-xs-12 col-md-8">
 
             <table class="table table-striped">
                 <thead>
-                <tr><th>Were</th><th>Length</th><th>When</th><th>Delete</th></tr>
+                <tr><th>index</th><th>Were</th><th>Length</th><th>When</th><th>Delete</th><th>guid</th></tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in items">
+                    <td>{{ $index }}</td>
                     <td><a href="#/runs/{{item.id}}">{{ item.Name }}</a> </td>
                     <td>{{ item.Length | number:2 }} km</td>
                     <td>{{ item.LastRan | date:"fullDate" }}</td>
                     <td><button class="btn-danger" ng-click="removeItem(item)">Delete</button></td>
+                    <td>{{ item.id }}</td>
                 </tr>
                 </tbody>
             </table>

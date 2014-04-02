@@ -445,7 +445,7 @@ angular.mock.$LogProvider = function() {
  * @param {number} delay Number of milliseconds between each function call.
  * @param {number=} [count=0] Number of times to repeat. If not set, or 0, will repeat
  *   indefinitely.
- * @param {boolean=} [invokeApply=true] If set to `false` skips model dirty checking, otherwise
+ * @param {boolean=} [invokeApply=true] If set to `false` skips dsl dirty checking, otherwise
  *   will invoke `fn` within the {@link ng.$rootScope.Scope#$apply $apply} block.
  * @returns {promise} A promise which will be notified on each iteration.
  */

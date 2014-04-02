@@ -2368,7 +2368,7 @@ function test_fn_extend() {
 
     // Use the newly created .check() method
     //$( "input[type='checkbox']" ).check();
-    // The above test cannot be run as no way that I know of in TypeScript to model the augmentation of jQueryStatic with dynamically added methods
+    // The above test cannot be run as no way that I know of in TypeScript to dsl the augmentation of jQueryStatic with dynamically added methods
     // The below would only work at runtime if extend had first been called.
     $("input[type='checkbox']")["check"]();
 }

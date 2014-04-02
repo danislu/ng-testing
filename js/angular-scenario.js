@@ -935,7 +935,7 @@ jQuery.ready.promise = function( obj ) {
 			// A fallback to window.onload, that will always work
 			window.addEventListener( "load", completed, false );
 
-		// If IE event model is used
+		// If IE event dsl is used
 		} else {
 			// Ensure firing before onload, maybe late but safe also for iframes
 			document.attachEvent( "onreadystatechange", completed );
@@ -7251,7 +7251,7 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = parseFloat( val ) || 0;
 	}
 
-	// use the active box-sizing model to add/subtract irrelevant styles
+	// use the active box-sizing dsl to add/subtract irrelevant styles
 	return ( val +
 		augmentWidthOrHeight(
 			elem,
@@ -10600,10 +10600,10 @@ function isLeafNode (node) {
  <file name="index.html">
  <div ng-controller="Controller">
  <form novalidate class="simple-form">
- Name: <input type="text" ng-model="user.name" /><br />
- E-mail: <input type="email" ng-model="user.email" /><br />
- Gender: <input type="radio" ng-model="user.gender" value="male" />male
- <input type="radio" ng-model="user.gender" value="female" />female<br />
+ Name: <input type="text" ng-dsl="user.name" /><br />
+ E-mail: <input type="email" ng-dsl="user.email" /><br />
+ Gender: <input type="radio" ng-dsl="user.gender" value="male" />male
+ <input type="radio" ng-dsl="user.gender" value="female" />female<br />
  <button ng-click="reset()">RESET</button>
  <button ng-click="update(user)">SAVE</button>
  </form>
@@ -15027,8 +15027,8 @@ function $TemplateCacheProvider() {
       }
     </script>
     <div ng-controller="Ctrl">
-      <input ng-model="name"> <br>
-      <textarea ng-model="html"></textarea> <br>
+      <input ng-dsl="name"> <br>
+      <textarea ng-dsl="html"></textarea> <br>
       <div compile="html"></div>
     </div>
    </file>
@@ -17381,11 +17381,11 @@ function $HttpProvider() {
 <example>
 <file name="index.html">
   <div ng-controller="FetchCtrl">
-    <select ng-model="method">
+    <select ng-dsl="method">
       <option>GET</option>
       <option>JSONP</option>
     </select>
-    <input type="text" ng-model="url" size="80"/>
+    <input type="text" ng-dsl="url" size="80"/>
     <button id="fetchbtn" ng-click="fetch()">fetch</button><br>
     <button id="samplegetbtn" ng-click="updateModel('GET', 'http-hello.html')">Sample GET</button>
     <button id="samplejsonpbtn"
@@ -18299,7 +18299,7 @@ function $IntervalProvider() {
       * @param {number} delay Number of milliseconds between each function call.
       * @param {number=} [count=0] Number of times to repeat. If not set, or 0, will repeat
       *   indefinitely.
-      * @param {boolean=} [invokeApply=true] If set to `false` skips model dirty checking, otherwise
+      * @param {boolean=} [invokeApply=true] If set to `false` skips dsl dirty checking, otherwise
       *   will invoke `fn` within the {@link ng.$rootScope.Scope#$apply $apply} block.
       * @returns {promise} A promise which will be notified on each iteration.
       *
@@ -18378,7 +18378,7 @@ function $IntervalProvider() {
       *
       *     <div>
       *       <div ng-controller="Ctrl2">
-      *         Date format: <input ng-model="format"> <hr/>
+      *         Date format: <input ng-dsl="format"> <hr/>
       *         Current time is: <span my-current-time="format"></span>
       *         <hr/>
       *         Blood 1 : <font color='red'>{{blood_1}}</font>
@@ -19236,7 +19236,7 @@ function $LocationProvider(){
        <div ng-controller="LogCtrl">
          <p>Reload this page with open console, enter text and hit the log button...</p>
          Message:
-         <input type="text" ng-model="message"/>
+         <input type="text" ng-dsl="message"/>
          <button ng-click="$log.log(message)">log</button>
          <button ng-click="$log.warn(message)">warn</button>
          <button ng-click="$log.info(message)">info</button>
@@ -20544,7 +20544,7 @@ function $ParseProvider() {
    * (accessed as promises).
    *
    * In most code we ended up resolving promises manually in controllers anyway and thus unifying
-   * the model access there.
+   * the dsl access there.
    *
    * Other downsides of automatic promise unwrapping:
    *
@@ -20668,7 +20668,7 @@ function $ParseProvider() {
  *
  *     setTimeout(function() {
  *       // since this fn executes async in a future turn of the event loop, we need to wrap
- *       // our code into an $apply call so that the model changes are properly observed.
+ *       // our code into an $apply call so that the dsl changes are properly observed.
  *       scope.$apply(function() {
  *         deferred.notify('About to greet ' + name + '.');
  *
@@ -20782,7 +20782,7 @@ function $ParseProvider() {
  *
  *  There are two main differences:
  *
- * - $q is integrated with the {@link ng.$rootScope.Scope} Scope model observation
+ * - $q is integrated with the {@link ng.$rootScope.Scope} Scope dsl observation
  *   mechanism in angular, which means faster propagation of resolution or rejection into your
  *   models and avoiding unnecessary browser repaints, which would result in flickering UI.
  * - Q has many more features than $q, but that comes at a cost of bytes. $q is tiny, but contains
@@ -21240,13 +21240,13 @@ function $$RAFProvider(){ //rAF
  * @description
  *
  * Sets the number of `$digest` iterations the scope should attempt to execute before giving up and
- * assuming that the model is unstable.
+ * assuming that the dsl is unstable.
  *
  * The current default is 10 iterations.
  *
  * In complex applications it's possible that the dependencies between `$watch`s will result in
  * several digest iterations. However if an application needs more than the default 10 digest
- * iterations for its model to stabilize then you should investigate what is causing the model to
+ * iterations for its dsl to stabilize then you should investigate what is causing the dsl to
  * continuously change during the digest.
  *
  * Increasing the TTL could have performance implications, so you should not change it without
@@ -21263,7 +21263,7 @@ function $$RAFProvider(){ //rAF
  *
  * Every application has a single root {@link ng.$rootScope.Scope scope}.
  * All other scopes are descendant scopes of the root scope. Scopes provide separation
- * between the model and the view, via a mechanism for watching the model for changes.
+ * between the dsl and the view, via a mechanism for watching the dsl for changes.
  * They also provide an event emission/broadcast and subscription facility. See the
  * {@link guide/scope developer guide on scopes}.
  */
@@ -21360,7 +21360,7 @@ function $RootScopeProvider(){
        *
        * {@link ng.$rootScope.Scope#$destroy $destroy()} must be called on a scope when it is
        * desired for the scope and its child scopes to be permanently detached from the parent and
-       * thus stop participating in model change detection and listener notification by invoking.
+       * thus stop participating in dsl change detection and listener notification by invoking.
        *
        * @param {boolean} isolate If true, then the scope does not prototypically inherit from the
        *         parent scope. The scope is isolated, as it can not see parent scope properties.
@@ -21422,7 +21422,7 @@ function $RootScopeProvider(){
        *   {@link angular.equals} function. To save the value of the object for later comparison,
        *   the {@link angular.copy} function is used. It also means that watching complex options
        *   will have adverse memory and performance implications.
-       * - The watch `listener` may change the model, which may trigger other `listener`s to fire.
+       * - The watch `listener` may change the dsl, which may trigger other `listener`s to fire.
        *   This is achieved by rerunning the watchers until no changes are detected. The rerun
        *   iteration limit is 10 to prevent an infinite loop deadlock.
        *
@@ -21738,7 +21738,7 @@ function $RootScopeProvider(){
        * @description
        * Processes all of the {@link ng.$rootScope.Scope#$watch watchers} of the current scope and
        * its children. Because a {@link ng.$rootScope.Scope#$watch watcher}'s listener can change
-       * the model, the `$digest()` keeps calling the {@link ng.$rootScope.Scope#$watch watchers}
+       * the dsl, the `$digest()` keeps calling the {@link ng.$rootScope.Scope#$watch watchers}
        * until no more listeners are firing. This means that it is possible to get into an infinite
        * loop. This function will throw `'Maximum iteration limit exceeded.'` if the number of
        * iterations exceeds 10.
@@ -21993,7 +21993,7 @@ function $RootScopeProvider(){
        * {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * __Note:__ if this function is called outside of a `$digest` cycle, a new `$digest` cycle
-       * will be scheduled. However, it is encouraged to always call code that changes the model
+       * will be scheduled. However, it is encouraged to always call code that changes the dsl
        * from within an `$apply` call. That includes code evaluated via `$evalAsync`.
        *
        * @param {(string|function())=} expression An angular expression to be executed.
@@ -22805,7 +22805,7 @@ function $SceDelegateProvider() {
  * Here's an example of a binding in a privileged context:
  *
  * <pre class="prettyprint">
- *     <input ng-model="userHtml">
+ *     <input ng-dsl="userHtml">
  *     <div ng-bind-html="userHtml">
  * </pre>
  *
@@ -23096,7 +23096,7 @@ function $SceProvider() {
    * constants or objects even if not wrapped.  All such implementations fulfill this contract.
    *
    *
-   * A note on the inheritance model for SCE contexts
+   * A note on the inheritance dsl for SCE contexts
    * ------------------------------------------------
    * I've used inheritance and made RESOURCE_URL wrapped types a subtype of URL wrapped types.  This
    * is purely an implementation details.
@@ -23558,7 +23558,7 @@ function $TimeoutProvider() {
       *
       * @param {function()} fn A function, whose execution should be delayed.
       * @param {number=} [delay=0] Delay in milliseconds.
-      * @param {boolean=} [invokeApply=true] If set to `false` skips model dirty checking, otherwise
+      * @param {boolean=} [invokeApply=true] If set to `false` skips dsl dirty checking, otherwise
       *   will invoke `fn` within the {@link ng.$rootScope.Scope#$apply $apply} block.
       * @returns {Promise} Promise that will be resolved when the timeout is reached. The value this
       *   promise will be resolved with is the return value of the `fn` function.
@@ -23746,13 +23746,13 @@ function urlIsSameOrigin(requestUrl) {
          }
        </script>
        <div ng-controller="Ctrl">
-         <input type="text" ng-model="greeting" />
+         <input type="text" ng-dsl="greeting" />
          <button ng-click="doGreeting(greeting)">ALERT</button>
        </div>
      </file>
      <file name="protractor.js" type="protractor">
       it('should display the greeting in the input box', function() {
-       element(by.model('greeting')).sendKeys('Hello, E2E Tests');
+       element(by.dsl('greeting')).sendKeys('Hello, E2E Tests');
        // If we click the button it will block the test runner
        // element(':button').click();
       });
@@ -23948,7 +23948,7 @@ function $FilterProvider($provide) {
                                 {name:'Julie', phone:'555-8765'},
                                 {name:'Juliette', phone:'555-5678'}]"></div>
 
-       Search: <input ng-model="searchText">
+       Search: <input ng-dsl="searchText">
        <table id="searchTextResults">
          <tr><th>Name</th><th>Phone</th></tr>
          <tr ng-repeat="friend in friends | filter:searchText">
@@ -23957,10 +23957,10 @@ function $FilterProvider($provide) {
          </tr>
        </table>
        <hr>
-       Any: <input ng-model="search.$"> <br>
-       Name only <input ng-model="search.name"><br>
-       Phone only <input ng-model="search.phone"><br>
-       Equality <input type="checkbox" ng-model="strict"><br>
+       Any: <input ng-dsl="search.$"> <br>
+       Name only <input ng-dsl="search.name"><br>
+       Phone only <input ng-dsl="search.phone"><br>
+       Equality <input type="checkbox" ng-dsl="strict"><br>
        <table id="searchObjResults">
          <tr><th>Name</th><th>Phone</th></tr>
          <tr ng-repeat="friendObj in friends | filter:search:strict">
@@ -23979,7 +23979,7 @@ function $FilterProvider($provide) {
        };
 
        it('should search across all fields when filtering with a string', function() {
-         var searchText = element(by.model('searchText'));
+         var searchText = element(by.dsl('searchText'));
          searchText.clear();
          searchText.sendKeys('m');
          expectFriendNames(['Mary', 'Mike', 'Adam'], 'friend');
@@ -23990,14 +23990,14 @@ function $FilterProvider($provide) {
        });
 
        it('should search in specific fields when filtering with a predicate object', function() {
-         var searchAny = element(by.model('search.$'));
+         var searchAny = element(by.dsl('search.$'));
          searchAny.clear();
          searchAny.sendKeys('i');
          expectFriendNames(['Mary', 'Mike', 'Julie', 'Juliette'], 'friendObj');
        });
        it('should use a equal comparison when comparator is true', function() {
-         var searchName = element(by.model('search.name'));
-         var strict = element(by.model('strict'));
+         var searchName = element(by.dsl('search.name'));
+         var strict = element(by.dsl('strict'));
          searchName.clear();
          searchName.sendKeys('Julie');
          strict.click();
@@ -24135,7 +24135,7 @@ function filterFilter() {
          }
        </script>
        <div ng-controller="Ctrl">
-         <input type="number" ng-model="amount"> <br>
+         <input type="number" ng-dsl="amount"> <br>
          default currency symbol ($): <span id="currency-default">{{amount | currency}}</span><br>
          custom currency identifier (USD$): <span>{{amount | currency:"USD$"}}</span>
        </div>
@@ -24151,8 +24151,8 @@ function filterFilter() {
            // https://github.com/angular/protractor/issues/481
            return;
          }
-         element(by.model('amount')).clear();
-         element(by.model('amount')).sendKeys('-1234');
+         element(by.dsl('amount')).clear();
+         element(by.dsl('amount')).sendKeys('-1234');
          expect(element(by.id('currency-default')).getText()).toBe('($1,234.00)');
          expect(element(by.binding('amount | currency:"USD$"')).getText()).toBe('(USD$1,234.00)');
        });
@@ -24194,7 +24194,7 @@ function currencyFilter($locale) {
          }
        </script>
        <div ng-controller="Ctrl">
-         Enter number: <input ng-model='val'><br>
+         Enter number: <input ng-dsl='val'><br>
          Default formatting: <span id='number-default'>{{val | number}}</span><br>
          No fractions: <span>{{val | number:0}}</span><br>
          Negative number: <span>{{-val | number:4}}</span>
@@ -24208,8 +24208,8 @@ function currencyFilter($locale) {
        });
 
        it('should update', function() {
-         element(by.model('val')).clear();
-         element(by.model('val')).sendKeys('3374.333');
+         element(by.dsl('val')).clear();
+         element(by.dsl('val')).sendKeys('3374.333');
          expect(element(by.id('number-default')).getText()).toBe('3,374.333');
          expect(element(by.binding('val | number:0')).getText()).toBe('3,374');
          expect(element(by.binding('-val | number:4')).getText()).toBe('-3,374.3330');
@@ -24654,15 +24654,15 @@ var uppercaseFilter = valueFn(uppercase);
          }
        </script>
        <div ng-controller="Ctrl">
-         Limit {{numbers}} to: <input type="integer" ng-model="numLimit">
+         Limit {{numbers}} to: <input type="integer" ng-dsl="numLimit">
          <p>Output numbers: {{ numbers | limitTo:numLimit }}</p>
-         Limit {{letters}} to: <input type="integer" ng-model="letterLimit">
+         Limit {{letters}} to: <input type="integer" ng-dsl="letterLimit">
          <p>Output letters: {{ letters | limitTo:letterLimit }}</p>
        </div>
      </file>
      <file name="protractor.js" type="protractor">
-       var numLimitInput = element(by.model('numLimit'));
-       var letterLimitInput = element(by.model('letterLimit'));
+       var numLimitInput = element(by.dsl('numLimit'));
+       var letterLimitInput = element(by.dsl('letterLimit'));
        var limitedNumbers = element(by.binding('numbers | limitTo:numLimit'));
        var limitedLetters = element(by.binding('letters | limitTo:letterLimit'));
 
@@ -24942,7 +24942,7 @@ var htmlAnchorDirective = valueFn({
  * in links and their different behaviors:
     <example>
       <file name="index.html">
-        <input ng-model="value" /><br />
+        <input ng-dsl="value" /><br />
         <a id="link-1" href ng-click="value = 1">link 1</a> (link, don't reload)<br />
         <a id="link-2" href="" ng-click="value = 2">link 2</a> (link, don't reload)<br />
         <a id="link-3" ng-href="/{{'123'}}">link 3</a> (link, reload!)<br />
@@ -24953,13 +24953,13 @@ var htmlAnchorDirective = valueFn({
       <file name="protractor.js" type="protractor">
         it('should execute ng-click but not reload when href without value', function() {
           element(by.id('link-1')).click();
-          expect(element(by.model('value')).getAttribute('value')).toEqual('1');
+          expect(element(by.dsl('value')).getAttribute('value')).toEqual('1');
           expect(element(by.id('link-1')).getAttribute('href')).toBe('');
         });
 
         it('should execute ng-click but not reload when href empty string', function() {
           element(by.id('link-2')).click();
-          expect(element(by.model('value')).getAttribute('value')).toEqual('2');
+          expect(element(by.dsl('value')).getAttribute('value')).toEqual('2');
           expect(element(by.id('link-2')).getAttribute('href')).toBe('');
         });
 
@@ -24980,19 +24980,19 @@ var htmlAnchorDirective = valueFn({
 
         xit('should execute ng-click but not reload when href empty string and name specified', function() {
           element(by.id('link-4')).click();
-          expect(element(by.model('value')).getAttribute('value')).toEqual('4');
+          expect(element(by.dsl('value')).getAttribute('value')).toEqual('4');
           expect(element(by.id('link-4')).getAttribute('href')).toBe('');
         });
 
         it('should execute ng-click but not reload when no href but name specified', function() {
           element(by.id('link-5')).click();
-          expect(element(by.model('value')).getAttribute('value')).toEqual('5');
+          expect(element(by.dsl('value')).getAttribute('value')).toEqual('5');
           expect(element(by.id('link-5')).getAttribute('href')).toBe(null);
         });
 
         it('should only change url when only ng-href', function() {
-          element(by.model('value')).clear();
-          element(by.model('value')).sendKeys('6');
+          element(by.dsl('value')).clear();
+          element(by.dsl('value')).sendKeys('6');
           expect(element(by.id('link-6')).getAttribute('href')).toMatch(/\/6$/);
 
           element(by.id('link-6')).click();
@@ -25087,13 +25087,13 @@ var htmlAnchorDirective = valueFn({
  * @example
     <example>
       <file name="index.html">
-        Click me to toggle: <input type="checkbox" ng-model="checked"><br/>
-        <button ng-model="button" ng-disabled="checked">Button</button>
+        Click me to toggle: <input type="checkbox" ng-dsl="checked"><br/>
+        <button ng-dsl="button" ng-disabled="checked">Button</button>
       </file>
       <file name="protractor.js" type="protractor">
         it('should toggle button', function() {
           expect(element(by.css('button')).getAttribute('disabled')).toBeFalsy();
-          element(by.model('checked')).click();
+          element(by.dsl('checked')).click();
           expect(element(by.css('button')).getAttribute('disabled')).toBeTruthy();
         });
       </file>
@@ -25122,13 +25122,13 @@ var htmlAnchorDirective = valueFn({
  * @example
     <example>
       <file name="index.html">
-        Check me to check both: <input type="checkbox" ng-model="master"><br/>
+        Check me to check both: <input type="checkbox" ng-dsl="master"><br/>
         <input id="checkSlave" type="checkbox" ng-checked="master">
       </file>
       <file name="protractor.js" type="protractor">
         it('should check both checkBoxes', function() {
           expect(element(by.id('checkSlave')).getAttribute('checked')).toBeFalsy();
-          element(by.model('master')).click();
+          element(by.dsl('master')).click();
           expect(element(by.id('checkSlave')).getAttribute('checked')).toBeTruthy();
         });
       </file>
@@ -25157,13 +25157,13 @@ var htmlAnchorDirective = valueFn({
  * @example
     <example>
       <file name="index.html">
-        Check me to make text readonly: <input type="checkbox" ng-model="checked"><br/>
+        Check me to make text readonly: <input type="checkbox" ng-dsl="checked"><br/>
         <input type="text" ng-readonly="checked" value="I'm Angular"/>
       </file>
       <file name="protractor.js" type="protractor">
         it('should toggle readonly attr', function() {
           expect(element(by.css('[type="text"]')).getAttribute('readonly')).toBeFalsy();
-          element(by.model('checked')).click();
+          element(by.dsl('checked')).click();
           expect(element(by.css('[type="text"]')).getAttribute('readonly')).toBeTruthy();
         });
       </file>
@@ -25193,7 +25193,7 @@ var htmlAnchorDirective = valueFn({
  * @example
     <example>
       <file name="index.html">
-        Check me to select: <input type="checkbox" ng-model="selected"><br/>
+        Check me to select: <input type="checkbox" ng-dsl="selected"><br/>
         <select>
           <option>Hello!</option>
           <option id="greet" ng-selected="selected">Greetings!</option>
@@ -25202,7 +25202,7 @@ var htmlAnchorDirective = valueFn({
       <file name="protractor.js" type="protractor">
         it('should select Greetings!', function() {
           expect(element(by.id('greet')).getAttribute('selected')).toBeFalsy();
-          element(by.model('selected')).click();
+          element(by.dsl('selected')).click();
           expect(element(by.id('greet')).getAttribute('selected')).toBeTruthy();
         });
       </file>
@@ -25230,7 +25230,7 @@ var htmlAnchorDirective = valueFn({
  * @example
      <example>
        <file name="index.html">
-         Check me check multiple: <input type="checkbox" ng-model="open"><br/>
+         Check me check multiple: <input type="checkbox" ng-dsl="open"><br/>
          <details id="details" ng-open="open">
             <summary>Show/Hide me</summary>
          </details>
@@ -25238,7 +25238,7 @@ var htmlAnchorDirective = valueFn({
        <file name="protractor.js" type="protractor">
          it('should toggle open', function() {
            expect(element(by.id('details')).getAttribute('open')).toBeFalsy();
-           element(by.model('open')).click();
+           element(by.dsl('open')).click();
            expect(element(by.id('details')).getAttribute('open')).toBeTruthy();
          });
        </file>
@@ -25633,7 +25633,7 @@ function FormController(element, attrs, $scope, $animate) {
         }
        </style>
        <form name="myForm" ng-controller="Ctrl" class="my-form">
-         userType: <input name="input" ng-model="userType" required>
+         userType: <input name="input" ng-dsl="userType" required>
          <span class="error" ng-show="myForm.input.$error.required">Required!</span><br>
          <tt>userType = {{userType}}</tt><br>
          <tt>myForm.input.$valid = {{myForm.input.$valid}}</tt><br>
@@ -25643,7 +25643,7 @@ function FormController(element, attrs, $scope, $animate) {
         </form>
       </file>
       <file name="protractor.js" type="protractor">
-        it('should initialize to model', function() {
+        it('should initialize to dsl', function() {
           var userType = element(by.binding('userType'));
           var valid = element(by.binding('myForm.input.$valid'));
 
@@ -25654,7 +25654,7 @@ function FormController(element, attrs, $scope, $animate) {
         it('should be invalid if empty', function() {
           var userType = element(by.binding('userType'));
           var valid = element(by.binding('myForm.input.$valid'));
-          var userInput = element(by.model('userType'));
+          var userInput = element(by.dsl('userType'));
 
           userInput.clear();
           userInput.sendKeys('');
@@ -25779,7 +25779,7 @@ var inputType = {
            }
          </script>
          <form name="myForm" ng-controller="Ctrl">
-           Single word: <input type="text" name="input" ng-model="text"
+           Single word: <input type="text" name="input" ng-dsl="text"
                                ng-pattern="word" required ng-trim="false">
            <span class="error" ng-show="myForm.input.$error.required">
              Required!</span>
@@ -25796,9 +25796,9 @@ var inputType = {
         <file name="protractor.js" type="protractor">
           var text = element(by.binding('text'));
           var valid = element(by.binding('myForm.input.$valid'));
-          var input = element(by.model('text'));
+          var input = element(by.dsl('text'));
 
-          it('should initialize to model', function() {
+          it('should initialize to dsl', function() {
             expect(text.getText()).toContain('guest');
             expect(valid.getText()).toContain('true');
           });
@@ -25829,7 +25829,7 @@ var inputType = {
      * @description
      * Input with date validation and transformation. In browsers that do not yet support
      * the HTML5 date input, a text element will be used. In that case, text must be entered in a valid ISO-8601
-     * date format (yyyy-MM-dd), for example: `2009-01-06`. The model must always be a Date object.
+     * date format (yyyy-MM-dd), for example: `2009-01-06`. The dsl must always be a Date object.
      *
      * @param {string} ngModel Assignable angular expression to data-bind to.
      * @param {string=} name Property name of the form under which the control is published.
@@ -25854,7 +25854,7 @@ var inputType = {
        </script>
        <form name="myForm" ng-controller="Ctrl as dateCtrl">
           Pick a date between in 2013:
-          <input type="date" id="exampleInput" name="input" ng-model="value"
+          <input type="date" id="exampleInput" name="input" ng-dsl="value"
               placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
           <span class="error" ng-show="myForm.input.$error.required">
               Required!</span>
@@ -25870,7 +25870,7 @@ var inputType = {
      <file name="protractor.js" type="protractor">
         var value = element(by.binding('value | date: "yyyy-MM-dd"'));
         var valid = element(by.binding('myForm.input.$valid'));
-        var input = element(by.model('value'));
+        var input = element(by.dsl('value'));
 
         // currently protractor/webdriver does not support
         // sending keys to all known HTML5 input controls
@@ -25883,7 +25883,7 @@ var inputType = {
           browser.executeScript(scr);
         }
 
-        it('should initialize to model', function() {
+        it('should initialize to dsl', function() {
           expect(value.getText()).toContain('2013-10-22');
           expect(valid.getText()).toContain('myForm.input.$valid = true');
         });
@@ -25913,7 +25913,7 @@ var inputType = {
     * @description
     * Input with datetime validation and transformation. In browsers that do not yet support
     * the HTML5 date input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-    * local datetime format (yyyy-MM-ddTHH:mm), for example: `2010-12-28T14:57`. The model must be a Date object.
+    * local datetime format (yyyy-MM-ddTHH:mm), for example: `2010-12-28T14:57`. The dsl must be a Date object.
     *
     * @param {string} ngModel Assignable angular expression to data-bind to.
     * @param {string=} name Property name of the form under which the control is published.
@@ -25938,7 +25938,7 @@ var inputType = {
       </script>
       <form name="myForm" ng-controller="Ctrl as dateCtrl">
         Pick a date between in 2013:
-        <input type="datetime-local" id="exampleInput" name="input" ng-model="value"
+        <input type="datetime-local" id="exampleInput" name="input" ng-dsl="value"
             placeholder="yyyy-MM-ddTHH:mm" min="2001-01-01T00:00" max="2013-12-31T00:00" required />
         <span class="error" ng-show="myForm.input.$error.required">
             Required!</span>
@@ -25954,7 +25954,7 @@ var inputType = {
     <file name="protractor.js" type="protractor">
       var value = element(by.binding('value | date: "yyyy-MM-ddTHH:mm"'));
       var valid = element(by.binding('myForm.input.$valid'));
-      var input = element(by.model('value'));
+      var input = element(by.dsl('value'));
 
       // currently protractor/webdriver does not support
       // sending keys to all known HTML5 input controls
@@ -25967,7 +25967,7 @@ var inputType = {
         browser.executeScript(scr);
       }
 
-      it('should initialize to model', function() {
+      it('should initialize to dsl', function() {
         expect(value.getText()).toContain('2010-12-28T14:57');
         expect(valid.getText()).toContain('myForm.input.$valid = true');
       });
@@ -25998,7 +25998,7 @@ var inputType = {
    * Input with time validation and transformation. In browsers that do not yet support
    * the HTML5 date input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
    * local time format (HH:mm), for example: `14:57`. Model must be a Date object. This binding will always output a
-   * Date object to the model of January 1, 1900, or local date `new Date(0, 0, 1, HH, mm)`.
+   * Date object to the dsl of January 1, 1900, or local date `new Date(0, 0, 1, HH, mm)`.
    *
    * @param {string} ngModel Assignable angular expression to data-bind to.
    * @param {string=} name Property name of the form under which the control is published.
@@ -26023,7 +26023,7 @@ var inputType = {
      </script>
      <form name="myForm" ng-controller="Ctrl as dateCtrl">
         Pick a between 8am and 5pm:
-        <input type="time" id="exampleInput" name="input" ng-model="value"
+        <input type="time" id="exampleInput" name="input" ng-dsl="value"
             placeholder="HH:mm" min="08:00" max="17:00" required />
         <span class="error" ng-show="myForm.input.$error.required">
             Required!</span>
@@ -26039,7 +26039,7 @@ var inputType = {
    <file name="protractor.js" type="protractor">
       var value = element(by.binding('value | date: "HH:mm"'));
       var valid = element(by.binding('myForm.input.$valid'));
-      var input = element(by.model('value'));
+      var input = element(by.dsl('value'));
 
       // currently protractor/webdriver does not support
       // sending keys to all known HTML5 input controls
@@ -26052,7 +26052,7 @@ var inputType = {
         browser.executeScript(scr);
       }
 
-      it('should initialize to model', function() {
+      it('should initialize to dsl', function() {
         expect(value.getText()).toContain('14:57');
         expect(valid.getText()).toContain('myForm.input.$valid = true');
       });
@@ -26082,7 +26082,7 @@ var inputType = {
     * @description
     * Input with week-of-the-year validation and transformation to Date. In browsers that do not yet support
     * the HTML5 week input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-    * week format (yyyy-W##), for example: `2013-W02`. The model must always be a Date object.
+    * week format (yyyy-W##), for example: `2013-W02`. The dsl must always be a Date object.
     *
     * @param {string} ngModel Assignable angular expression to data-bind to.
     * @param {string=} name Property name of the form under which the control is published.
@@ -26107,7 +26107,7 @@ var inputType = {
       </script>
       <form name="myForm" ng-controller="Ctrl as dateCtrl">
         Pick a date between in 2013:
-        <input id="exampleInput" type="week" name="input" ng-model="value"
+        <input id="exampleInput" type="week" name="input" ng-dsl="value"
             placeholder="YYYY-W##" min="2012-W32" max="2013-W52" required />
         <span class="error" ng-show="myForm.input.$error.required">
             Required!</span>
@@ -26123,7 +26123,7 @@ var inputType = {
     <file name="protractor.js" type="protractor">
       var value = element(by.binding('value | date: "yyyy-Www"'));
       var valid = element(by.binding('myForm.input.$valid'));
-      var input = element(by.model('value'));
+      var input = element(by.dsl('value'));
 
       // currently protractor/webdriver does not support
       // sending keys to all known HTML5 input controls
@@ -26136,7 +26136,7 @@ var inputType = {
         browser.executeScript(scr);
       }
 
-      it('should initialize to model', function() {
+      it('should initialize to dsl', function() {
         expect(value.getText()).toContain('2013-W01');
         expect(valid.getText()).toContain('myForm.input.$valid = true');
       });
@@ -26164,8 +26164,8 @@ var inputType = {
    * @description
    * Input with month validation and transformation. In browsers that do not yet support
    * the HTML5 month input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
-   * month format (yyyy-MM), for example: `2009-01`. The model must always be a Date object. In the event the model is
-   * not set to the first of the month, the first of that model's month is assumed.
+   * month format (yyyy-MM), for example: `2009-01`. The dsl must always be a Date object. In the event the dsl is
+   * not set to the first of the month, the first of that dsl's month is assumed.
    *
    * @param {string} ngModel Assignable angular expression to data-bind to.
    * @param {string=} name Property name of the form under which the control is published.
@@ -26190,7 +26190,7 @@ var inputType = {
      </script>
      <form name="myForm" ng-controller="Ctrl as dateCtrl">
        Pick a month int 2013:
-       <input id="exampleInput" type="month" name="input" ng-model="value"
+       <input id="exampleInput" type="month" name="input" ng-dsl="value"
           placeholder="yyyy-MM" min="2013-01" max="2013-12" required />
        <span class="error" ng-show="myForm.input.$error.required">
           Required!</span>
@@ -26206,7 +26206,7 @@ var inputType = {
    <file name="protractor.js" type="protractor">
       var value = element(by.binding('value | date: "yyyy-MM"'));
       var valid = element(by.binding('myForm.input.$valid'));
-      var input = element(by.model('value'));
+      var input = element(by.dsl('value'));
 
       // currently protractor/webdriver does not support
       // sending keys to all known HTML5 input controls
@@ -26219,7 +26219,7 @@ var inputType = {
         browser.executeScript(scr);
       }
 
-      it('should initialize to model', function() {
+      it('should initialize to dsl', function() {
         expect(value.getText()).toContain('2013-10');
         expect(valid.getText()).toContain('myForm.input.$valid = true');
       });
@@ -26277,7 +26277,7 @@ var inputType = {
            }
          </script>
          <form name="myForm" ng-controller="Ctrl">
-           Number: <input type="number" name="input" ng-model="value"
+           Number: <input type="number" name="input" ng-dsl="value"
                           min="0" max="99" required>
            <span class="error" ng-show="myForm.input.$error.required">
              Required!</span>
@@ -26293,9 +26293,9 @@ var inputType = {
         <file name="protractor.js" type="protractor">
           var value = element(by.binding('value'));
           var valid = element(by.binding('myForm.input.$valid'));
-          var input = element(by.model('value'));
+          var input = element(by.dsl('value'));
 
-          it('should initialize to model', function() {
+          it('should initialize to dsl', function() {
             expect(value.getText()).toContain('12');
             expect(valid.getText()).toContain('true');
           });
@@ -26352,7 +26352,7 @@ var inputType = {
            }
          </script>
          <form name="myForm" ng-controller="Ctrl">
-           URL: <input type="url" name="input" ng-model="text" required>
+           URL: <input type="url" name="input" ng-dsl="text" required>
            <span class="error" ng-show="myForm.input.$error.required">
              Required!</span>
            <span class="error" ng-show="myForm.input.$error.url">
@@ -26368,9 +26368,9 @@ var inputType = {
         <file name="protractor.js" type="protractor">
           var text = element(by.binding('text'));
           var valid = element(by.binding('myForm.input.$valid'));
-          var input = element(by.model('text'));
+          var input = element(by.dsl('text'));
 
-          it('should initialize to model', function() {
+          it('should initialize to dsl', function() {
             expect(text.getText()).toContain('http://google.com');
             expect(valid.getText()).toContain('true');
           });
@@ -26428,7 +26428,7 @@ var inputType = {
            }
          </script>
            <form name="myForm" ng-controller="Ctrl">
-             Email: <input type="email" name="input" ng-model="text" required>
+             Email: <input type="email" name="input" ng-dsl="text" required>
              <span class="error" ng-show="myForm.input.$error.required">
                Required!</span>
              <span class="error" ng-show="myForm.input.$error.email">
@@ -26444,9 +26444,9 @@ var inputType = {
         <file name="protractor.js" type="protractor">
           var text = element(by.binding('text'));
           var valid = element(by.binding('myForm.input.$valid'));
-          var input = element(by.model('text'));
+          var input = element(by.dsl('text'));
 
-          it('should initialize to model', function() {
+          it('should initialize to dsl', function() {
             expect(text.getText()).toContain('me@example.com');
             expect(valid.getText()).toContain('true');
           });
@@ -26498,9 +26498,9 @@ var inputType = {
            }
          </script>
          <form name="myForm" ng-controller="Ctrl">
-           <input type="radio" ng-model="color" value="red">  Red <br/>
-           <input type="radio" ng-model="color" ng-value="specialValue"> Green <br/>
-           <input type="radio" ng-model="color" value="blue"> Blue <br/>
+           <input type="radio" ng-dsl="color" value="red">  Red <br/>
+           <input type="radio" ng-dsl="color" ng-value="specialValue"> Green <br/>
+           <input type="radio" ng-dsl="color" value="blue"> Blue <br/>
            <tt>color = {{color | json}}</tt><br/>
           </form>
           Note that `ng-value="specialValue"` sets radio item's value to be the value of `$scope.specialValue`.
@@ -26511,7 +26511,7 @@ var inputType = {
 
             expect(color.getText()).toContain('blue');
 
-            element.all(by.model('color')).get(0).click();
+            element.all(by.dsl('color')).get(0).click();
 
             expect(color.getText()).toContain('red');
           });
@@ -26545,8 +26545,8 @@ var inputType = {
            }
          </script>
          <form name="myForm" ng-controller="Ctrl">
-           Value1: <input type="checkbox" ng-model="value1"> <br/>
-           Value2: <input type="checkbox" ng-model="value2"
+           Value1: <input type="checkbox" ng-dsl="value1"> <br/>
+           Value2: <input type="checkbox" ng-dsl="value2"
                           ng-true-value="YES" ng-false-value="NO"> <br/>
            <tt>value1 = {{value1}}</tt><br/>
            <tt>value2 = {{value2}}</tt><br/>
@@ -26560,8 +26560,8 @@ var inputType = {
             expect(value1.getText()).toContain('true');
             expect(value2.getText()).toContain('YES');
 
-            element(by.model('value1')).click();
-            element(by.model('value2')).click();
+            element(by.dsl('value1')).click();
+            element(by.dsl('value2')).click();
 
             expect(value1.getText()).toContain('false');
             expect(value2.getText()).toContain('NO');
@@ -26628,7 +26628,7 @@ function textInputType(scope, element, attr, ctrl, $sniffer, $browser) {
 
     // By default we will trim the value
     // If the attribute ng-trim exists we will avoid trimming
-    // e.g. <input ng-model="foo" ng-trim="false">
+    // e.g. <input ng-dsl="foo" ng-trim="false">
     if (toBoolean(attr.ngTrim || 'T')) {
       value = trim(value);
     }
@@ -27027,10 +27027,10 @@ function checkboxInputType(scope, element, attr, ctrl) {
        </script>
        <div ng-controller="Ctrl">
          <form name="myForm">
-           User name: <input type="text" name="userName" ng-model="user.name" required>
+           User name: <input type="text" name="userName" ng-dsl="user.name" required>
            <span class="error" ng-show="myForm.userName.$error.required">
              Required!</span><br>
-           Last name: <input type="text" name="lastName" ng-model="user.last"
+           Last name: <input type="text" name="lastName" ng-dsl="user.last"
              ng-minlength="3" ng-maxlength="10">
            <span class="error" ng-show="myForm.lastName.$error.minlength">
              Too short!</span>
@@ -27055,10 +27055,10 @@ function checkboxInputType(scope, element, attr, ctrl) {
         var lastNameValid = element(by.binding('myForm.lastName.$valid'));
         var lastNameError = element(by.binding('myForm.lastName.$error'));
         var formValid = element(by.binding('myForm.$valid'));
-        var userNameInput = element(by.model('user.name'));
-        var userLastInput = element(by.model('user.last'));
+        var userNameInput = element(by.dsl('user.name'));
+        var userLastInput = element(by.dsl('user.last'));
 
-        it('should initialize to model', function() {
+        it('should initialize to dsl', function() {
           expect(user.getText()).toContain('{"name":"guest","last":"visitor"}');
           expect(userNameValid.getText()).toContain('true');
           expect(formValid.getText()).toContain('true');
@@ -27127,10 +27127,10 @@ var VALID_CLASS = 'ng-valid',
  * @name ngModel.NgModelController
  *
  * @property {string} $viewValue Actual string value in the view.
- * @property {*} $modelValue The value in the model, that the control is bound to.
+ * @property {*} $modelValue The value in the dsl, that the control is bound to.
  * @property {Array.<Function>} $parsers Array of functions to execute, as a pipeline, whenever
        the control reads value from the DOM.  Each function is called, in turn, passing the value
-       through to the next. The last return value is used to populate the model.
+       through to the next. The last return value is used to populate the dsl.
        Used to sanitize / convert the value as well as validation. For validation,
        the parsers should update the validity state using
        {@link ngModel.NgModelController#$setValidity $setValidity()},
@@ -27138,7 +27138,7 @@ var VALID_CLASS = 'ng-valid',
 
  *
  * @property {Array.<Function>} $formatters Array of functions to execute, as a pipeline, whenever
-       the model value changes. Each function is called, in turn, passing the value through to the
+       the dsl value changes. Each function is called, in turn, passing the value through to the
        next. Used to format / convert values for display in the control and validation.
  *      ```js
  *      function formatter(value) {
@@ -27151,7 +27151,7 @@ var VALID_CLASS = 'ng-valid',
  *
  * @property {Array.<Function>} $viewChangeListeners Array of functions to execute whenever the
  *     view value has changed. It is called with no arguments, and its return value is ignored.
- *     This can be used in place of additional $watches against the model value.
+ *     This can be used in place of additional $watches against the dsl value.
  *
  * @property {Object} $error An object hash with all errors as keys.
  *
@@ -27162,7 +27162,7 @@ var VALID_CLASS = 'ng-valid',
  *
  * @description
  *
- * `NgModelController` provides API for the `ng-model` directive. The controller contains
+ * `NgModelController` provides API for the `ng-dsl` directive. The controller contains
  * services for data-binding, validation, CSS updates, and value formatting and parsing. It
  * purposefully does not contain any logic which deals with DOM rendering or listening to
  * DOM events. Such DOM related logic should be provided by other directives which make use of
@@ -27170,7 +27170,7 @@ var VALID_CLASS = 'ng-valid',
  *
  * ## Custom Control Example
  * This example shows how to use `NgModelController` with a custom control to achieve
- * data-binding. Notice how different directives (`contenteditable`, `ng-model`, and `required`)
+ * data-binding. Notice how different directives (`contenteditable`, `ng-dsl`, and `required`)
  * collaborate together to achieve the desired result.
  *
  * Note that `contenteditable` is an HTML5 attribute, which tells the browser to let the element
@@ -27196,7 +27196,7 @@ var VALID_CLASS = 'ng-valid',
             restrict: 'A', // only activate on element attribute
             require: '?ngModel', // get a hold of NgModelController
             link: function(scope, element, attrs, ngModel) {
-              if(!ngModel) return; // do nothing if no ng-model
+              if(!ngModel) return; // do nothing if no ng-dsl
 
               // Specify how UI should be updated
               ngModel.$render = function() {
@@ -27209,7 +27209,7 @@ var VALID_CLASS = 'ng-valid',
               });
               read(); // initialize
 
-              // Write data to the model
+              // Write data to the dsl
               function read() {
                 var html = element.html();
                 // When we clear the content editable the browser leaves a <br> behind
@@ -27226,12 +27226,12 @@ var VALID_CLASS = 'ng-valid',
     <file name="index.html">
       <form name="myForm">
        <div contenteditable
-            name="myWidget" ng-model="userContent"
+            name="myWidget" ng-dsl="userContent"
             strip-br="true"
             required>Change me!</div>
         <span ng-show="myForm.myWidget.$error.required">Required!</span>
        <hr>
-       <textarea ng-model="userContent"></textarea>
+       <textarea ng-dsl="userContent"></textarea>
       </form>
     </file>
     <file name="protractor.js" type="protractor">
@@ -27282,7 +27282,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * @name ngModel.NgModelController#$render
    *
    * @description
-   * Called when the view needs to be updated. It is expected that the user of the ng-model
+   * Called when the view needs to be updated. It is expected that the user of the ng-dsl
    * directive will implement this method.
    */
   this.$render = noop;
@@ -27397,7 +27397,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    *
    * It will update the $viewValue, then pass this value through each of the functions in `$parsers`,
    * which includes any validators. The value that comes out of this `$parsers` pipeline, be applied to
-   * `$modelValue` and the **expression** specified in the `ng-model` attribute.
+   * `$modelValue` and the **expression** specified in the `ng-dsl` attribute.
    *
    * Lastly, all the registered change listeners, in the `$viewChangeListeners` list, are called.
    *
@@ -27434,13 +27434,13 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
     }
   };
 
-  // model -> value
+  // dsl -> value
   var ctrl = this;
 
   $scope.$watch(function ngModelWatch() {
     var value = ngModelGet($scope);
 
-    // if scope model value and ngModel value are out of sync
+    // if scope dsl value and ngModel value are out of sync
     if (ctrl.$modelValue !== value) {
 
       var formatters = ctrl.$formatters,
@@ -27475,7 +27475,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
  *
  * `ngModel` is responsible for:
  *
- * - Binding the view into the model, which other directives such as `input`, `textarea` or `select`
+ * - Binding the view into the dsl, which other directives such as `input`, `textarea` or `select`
  *   require.
  * - Providing validation behavior (i.e. required, number, email, url).
  * - Keeping the state of the control (valid/invalid, dirty/pristine, validation errors).
@@ -27509,20 +27509,20 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
  *
  * # CSS classes
  * The following CSS classes are added and removed on the associated input/select/textarea element
- * depending on the validity of the model.
+ * depending on the validity of the dsl.
  *
- *  - `ng-valid` is set if the model is valid.
- *  - `ng-invalid` is set if the model is invalid.
- *  - `ng-pristine` is set if the model is pristine.
- *  - `ng-dirty` is set if the model is dirty.
+ *  - `ng-valid` is set if the dsl is valid.
+ *  - `ng-invalid` is set if the dsl is invalid.
+ *  - `ng-pristine` is set if the dsl is pristine.
+ *  - `ng-dirty` is set if the dsl is dirty.
  *
  * Keep in mind that ngAnimate can detect each of these classes when added and removed.
  *
  * ## Animation Hooks
  *
  * Animations within models are triggered when any of the associated CSS classes are added and removed
- * on the input element which is attached to the model. These classes are: `.ng-pristine`, `.ng-dirty`,
- * `.ng-invalid` and `.ng-valid` as well as any other validations that are performed on the model itself.
+ * on the input element which is attached to the dsl. These classes are: `.ng-pristine`, `.ng-dirty`,
+ * `.ng-invalid` and `.ng-valid` as well as any other validations that are performed on the dsl itself.
  * The animations that are triggered within ngModel are similar to how they work in ngClass and
  * animations can be hooked into using CSS transitions, keyframes as well as JS animations.
  *
@@ -27564,7 +27564,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
        Update input to see transitions when valid/invalid.
        Integer is a valid value.
        <form name="testForm" ng-controller="Ctrl">
-         <input ng-model="val" ng-pattern="/^\d+$/" name="anim" class="my-input" />
+         <input ng-dsl="val" ng-pattern="/^\d+$/" name="anim" class="my-input" />
        </form>
      </file>
  * </example>
@@ -27598,7 +27598,7 @@ var ngModelDirective = function() {
  * The expression is evaluated immediately, unlike the JavaScript onchange event
  * which only triggers at the end of a change (usually, when the user leaves the
  * form element or presses the return key).
- * The expression is not evaluated when the value change is coming from the model.
+ * The expression is not evaluated when the value change is coming from the dsl.
  *
  * Note, this directive requires `ngModel` to be present.
  *
@@ -27618,8 +27618,8 @@ var ngModelDirective = function() {
  *       }
  *     </script>
  *     <div ng-controller="Controller">
- *       <input type="checkbox" ng-model="confirmed" ng-change="change()" id="ng-change-example1" />
- *       <input type="checkbox" ng-model="confirmed" id="ng-change-example2" />
+ *       <input type="checkbox" ng-dsl="confirmed" ng-change="change()" id="ng-change-example1" />
+ *       <input type="checkbox" ng-dsl="confirmed" id="ng-change-example2" />
  *       <label for="ng-change-example2">Confirmed</label><br />
  *       <tt>debug = {{confirmed}}</tt><br/>
  *       <tt>counter = {{counter}}</tt><br/>
@@ -27638,7 +27638,7 @@ var ngModelDirective = function() {
  *       expect(debug.getText()).toContain('true');
  *     });
  *
- *     it('should not evaluate the expression if changing from model', function() {
+ *     it('should not evaluate the expression if changing from dsl', function() {
  *       element(by.id('ng-change-example2')).click();
 
  *       expect(counter.getText()).toContain('0');
@@ -27706,7 +27706,7 @@ var requiredDirective = function() {
          }
        </script>
        <form name="myForm" ng-controller="Ctrl">
-         List: <input name="namesInput" ng-model="names" ng-list required>
+         List: <input name="namesInput" ng-dsl="names" ng-list required>
          <span class="error" ng-show="myForm.namesInput.$error.required">
            Required!</span>
          <br>
@@ -27718,12 +27718,12 @@ var requiredDirective = function() {
         </form>
       </file>
       <file name="protractor.js" type="protractor">
-        var listInput = element(by.model('names'));
+        var listInput = element(by.dsl('names'));
         var names = element(by.binding('{{names}}'));
         var valid = element(by.binding('myForm.namesInput.$valid'));
         var error = element(by.css('span.error'));
 
-        it('should initialize to model', function() {
+        it('should initialize to dsl', function() {
           expect(names.getText()).toContain('["igor","misko","vojta"]');
           expect(valid.getText()).toContain('true');
           expect(error.getCssValue('display')).toBe('none');
@@ -27810,7 +27810,7 @@ var CONSTANT_VALUE_REGEXP = /^(true|false|\d+)$/;
             <label ng-repeat="name in names" for="{{name}}">
               {{name}}
               <input type="radio"
-                     ng-model="my.favorite"
+                     ng-dsl="my.favorite"
                      ng-value="name"
                      id="{{name}}"
                      name="favorite">
@@ -27821,11 +27821,11 @@ var CONSTANT_VALUE_REGEXP = /^(true|false|\d+)$/;
       <file name="protractor.js" type="protractor">
         var favorite = element(by.binding('my.favorite'));
 
-        it('should initialize to model', function() {
+        it('should initialize to dsl', function() {
           expect(favorite.getText()).toContain('unicorns');
         });
         it('should bind the values to the inputs', function() {
-          element.all(by.model('my.favorite')).get(0).click();
+          element.all(by.dsl('my.favorite')).get(0).click();
           expect(favorite.getText()).toContain('pizza');
         });
       </file>
@@ -27884,13 +27884,13 @@ var ngValueDirective = function() {
          }
        </script>
        <div ng-controller="Ctrl">
-         Enter name: <input type="text" ng-model="name"><br>
+         Enter name: <input type="text" ng-dsl="name"><br>
          Hello <span ng-bind="name"></span>!
        </div>
      </file>
      <file name="protractor.js" type="protractor">
        it('should check ng-bind', function() {
-         var nameInput = element(by.model('name'));
+         var nameInput = element(by.dsl('name'));
 
          expect(element(by.binding('name')).getText()).toBe('Whirled');
          nameInput.clear();
@@ -27938,16 +27938,16 @@ var ngBindDirective = ngDirective(function(scope, element, attr) {
          }
        </script>
        <div ng-controller="Ctrl">
-        Salutation: <input type="text" ng-model="salutation"><br>
-        Name: <input type="text" ng-model="name"><br>
+        Salutation: <input type="text" ng-dsl="salutation"><br>
+        Name: <input type="text" ng-dsl="name"><br>
         <pre ng-bind-template="{{salutation}} {{name}}!"></pre>
        </div>
      </file>
      <file name="protractor.js" type="protractor">
        it('should check ng-bind', function() {
          var salutationElem = element(by.binding('salutation'));
-         var salutationInput = element(by.model('salutation'));
-         var nameInput = element(by.model('name'));
+         var salutationInput = element(by.dsl('salutation'));
+         var nameInput = element(by.dsl('name'));
 
          expect(salutationElem.getText()).toBe('Hello World!');
 
@@ -28135,17 +28135,17 @@ function classDirective(name, selector) {
    <example>
      <file name="index.html">
        <p ng-class="{strike: deleted, bold: important, red: error}">Map Syntax Example</p>
-       <input type="checkbox" ng-model="deleted"> deleted (apply "strike" class)<br>
-       <input type="checkbox" ng-model="important"> important (apply "bold" class)<br>
-       <input type="checkbox" ng-model="error"> error (apply "red" class)
+       <input type="checkbox" ng-dsl="deleted"> deleted (apply "strike" class)<br>
+       <input type="checkbox" ng-dsl="important"> important (apply "bold" class)<br>
+       <input type="checkbox" ng-dsl="error"> error (apply "red" class)
        <hr>
        <p ng-class="style">Using String Syntax</p>
-       <input type="text" ng-model="style" placeholder="Type: bold strike red">
+       <input type="text" ng-dsl="style" placeholder="Type: bold strike red">
        <hr>
        <p ng-class="[style1, style2, style3]">Using Array Syntax</p>
-       <input ng-model="style1" placeholder="Type: bold, strike or red"><br>
-       <input ng-model="style2" placeholder="Type: bold, strike or red"><br>
-       <input ng-model="style3" placeholder="Type: bold, strike or red"><br>
+       <input ng-dsl="style1" placeholder="Type: bold, strike or red"><br>
+       <input ng-dsl="style2" placeholder="Type: bold, strike or red"><br>
+       <input ng-dsl="style3" placeholder="Type: bold, strike or red"><br>
      </file>
      <file name="style.css">
        .strike {
@@ -28166,25 +28166,25 @@ function classDirective(name, selector) {
          expect(ps.first().getAttribute('class')).not.toMatch(/bold/);
          expect(ps.first().getAttribute('class')).not.toMatch(/red/);
 
-         element(by.model('important')).click();
+         element(by.dsl('important')).click();
          expect(ps.first().getAttribute('class')).toMatch(/bold/);
 
-         element(by.model('error')).click();
+         element(by.dsl('error')).click();
          expect(ps.first().getAttribute('class')).toMatch(/red/);
        });
 
        it('should let you toggle string example', function() {
          expect(ps.get(1).getAttribute('class')).toBe('');
-         element(by.model('style')).clear();
-         element(by.model('style')).sendKeys('red');
+         element(by.dsl('style')).clear();
+         element(by.dsl('style')).sendKeys('red');
          expect(ps.get(1).getAttribute('class')).toBe('red');
        });
 
        it('array example should have 3 classes', function() {
          expect(ps.last().getAttribute('class')).toBe('');
-         element(by.model('style1')).sendKeys('bold');
-         element(by.model('style2')).sendKeys('strike');
-         element(by.model('style3')).sendKeys('red');
+         element(by.dsl('style1')).sendKeys('bold');
+         element(by.dsl('style2')).sendKeys('strike');
+         element(by.dsl('style3')).sendKeys('red');
          expect(ps.last().getAttribute('class')).toBe('bold strike red');
        });
      </file>
@@ -28464,16 +28464,16 @@ var ngCloakDirective = ngDirective({
         };
       </script>
       <div id="ctrl-as-exmpl" ng-controller="SettingsController1 as settings">
-        Name: <input type="text" ng-model="settings.name"/>
+        Name: <input type="text" ng-dsl="settings.name"/>
         [ <a href="" ng-click="settings.greet()">greet</a> ]<br/>
         Contact:
         <ul>
           <li ng-repeat="contact in settings.contacts">
-            <select ng-model="contact.type">
+            <select ng-dsl="contact.type">
                <option>phone</option>
                <option>email</option>
             </select>
-            <input type="text" ng-model="contact.value"/>
+            <input type="text" ng-dsl="contact.value"/>
             [ <a href="" ng-click="settings.clearContact(contact)">clear</a>
             | <a href="" ng-click="settings.removeContact(contact)">X</a> ]
           </li>
@@ -28485,7 +28485,7 @@ var ngCloakDirective = ngDirective({
        it('should check controller as', function() {
          var container = element(by.id('ctrl-as-exmpl'));
 
-         expect(container.findElement(by.model('settings.name'))
+         expect(container.findElement(by.dsl('settings.name'))
              .getAttribute('value')).toBe('John Smith');
 
          var firstRepeat =
@@ -28493,20 +28493,20 @@ var ngCloakDirective = ngDirective({
          var secondRepeat =
              container.findElement(by.repeater('contact in settings.contacts').row(1));
 
-         expect(firstRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(firstRepeat.findElement(by.dsl('contact.value')).getAttribute('value'))
              .toBe('408 555 1212');
-         expect(secondRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(secondRepeat.findElement(by.dsl('contact.value')).getAttribute('value'))
              .toBe('john.smith@example.org');
 
          firstRepeat.findElement(by.linkText('clear')).click();
 
-         expect(firstRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(firstRepeat.findElement(by.dsl('contact.value')).getAttribute('value'))
              .toBe('');
 
          container.findElement(by.linkText('add')).click();
 
          expect(container.findElement(by.repeater('contact in settings.contacts').row(2))
-             .findElement(by.model('contact.value'))
+             .findElement(by.dsl('contact.value'))
              .getAttribute('value'))
              .toBe('yourname@example.org');
        });
@@ -28541,16 +28541,16 @@ var ngCloakDirective = ngDirective({
         }
       </script>
       <div id="ctrl-exmpl" ng-controller="SettingsController2">
-        Name: <input type="text" ng-model="name"/>
+        Name: <input type="text" ng-dsl="name"/>
         [ <a href="" ng-click="greet()">greet</a> ]<br/>
         Contact:
         <ul>
           <li ng-repeat="contact in contacts">
-            <select ng-model="contact.type">
+            <select ng-dsl="contact.type">
                <option>phone</option>
                <option>email</option>
             </select>
-            <input type="text" ng-model="contact.value"/>
+            <input type="text" ng-dsl="contact.value"/>
             [ <a href="" ng-click="clearContact(contact)">clear</a>
             | <a href="" ng-click="removeContact(contact)">X</a> ]
           </li>
@@ -28562,7 +28562,7 @@ var ngCloakDirective = ngDirective({
        it('should check controller', function() {
          var container = element(by.id('ctrl-exmpl'));
 
-         expect(container.findElement(by.model('name'))
+         expect(container.findElement(by.dsl('name'))
              .getAttribute('value')).toBe('John Smith');
 
          var firstRepeat =
@@ -28570,20 +28570,20 @@ var ngCloakDirective = ngDirective({
          var secondRepeat =
              container.findElement(by.repeater('contact in contacts').row(1));
 
-         expect(firstRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(firstRepeat.findElement(by.dsl('contact.value')).getAttribute('value'))
              .toBe('408 555 1212');
-         expect(secondRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(secondRepeat.findElement(by.dsl('contact.value')).getAttribute('value'))
              .toBe('john.smith@example.org');
 
          firstRepeat.findElement(by.linkText('clear')).click();
 
-         expect(firstRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(firstRepeat.findElement(by.dsl('contact.value')).getAttribute('value'))
              .toBe('');
 
          container.findElement(by.linkText('add')).click();
 
          expect(container.findElement(by.repeater('contact in contacts').row(2))
-             .findElement(by.model('contact.value'))
+             .findElement(by.dsl('contact.value'))
              .getAttribute('value'))
              .toBe('yourname@example.org');
        });
@@ -28963,7 +28963,7 @@ forEach(
       </script>
       <form ng-submit="submit()" ng-controller="Ctrl">
         Enter text and hit enter:
-        <input type="text" ng-model="text" name="text" />
+        <input type="text" ng-dsl="text" name="text" />
         <input type="submit" id="submit" value="Submit" />
         <pre>list={{list}}</pre>
       </form>
@@ -29032,7 +29032,7 @@ forEach(
  * @example
    <example>
      <file name="index.html">
-      <input ng-copy="copied=true" ng-init="copied=false; value='copy me'" ng-model="value">
+      <input ng-copy="copied=true" ng-init="copied=false; value='copy me'" ng-dsl="value">
       copied: {{copied}}
      </file>
    </example>
@@ -29053,7 +29053,7 @@ forEach(
  * @example
    <example>
      <file name="index.html">
-      <input ng-cut="cut=true" ng-init="cut=false; value='cut me'" ng-model="value">
+      <input ng-cut="cut=true" ng-init="cut=false; value='cut me'" ng-dsl="value">
       cut: {{cut}}
      </file>
    </example>
@@ -29126,7 +29126,7 @@ forEach(
  * @example
   <example module="ngAnimate" deps="angular-animate.js" animations="true">
     <file name="index.html">
-      Click me: <input type="checkbox" ng-model="checked" ng-init="checked=true" /><br/>
+      Click me: <input type="checkbox" ng-dsl="checked" ng-init="checked=true" /><br/>
       Show when checked:
       <span ng-if="checked" class="animate-if">
         I'm removed when the checkbox is unchecked.
@@ -29249,7 +29249,7 @@ var ngIfDirective = ['$animate', function($animate) {
   <example module="ngAnimate" deps="angular-animate.js" animations="true">
     <file name="index.html">
      <div ng-controller="Ctrl">
-       <select ng-model="template" ng-options="t.name for t in templates">
+       <select ng-dsl="template" ng-options="t.name for t in templates">
         <option value="">(blank)</option>
        </select>
        url of the template: <tt>{{template.url}}</tt>
@@ -29314,7 +29314,7 @@ var ngIfDirective = ['$animate', function($animate) {
       }
     </file>
     <file name="protractor.js" type="protractor">
-      var templateSelect = element(by.model('template'));
+      var templateSelect = element(by.dsl('template'));
       var includeElem = element(by.css('[ng-include]'));
 
       it('should load template1.html', function() {
@@ -29660,9 +29660,9 @@ var ngNonBindableDirective = ngDirective({ terminal: true, priority: 1000 });
           }
         </script>
         <div ng-controller="Ctrl">
-          Person 1:<input type="text" ng-model="person1" value="Igor" /><br/>
-          Person 2:<input type="text" ng-model="person2" value="Misko" /><br/>
-          Number of People:<input type="text" ng-model="personCount" value="1" /><br/>
+          Person 1:<input type="text" ng-dsl="person1" value="Igor" /><br/>
+          Person 2:<input type="text" ng-dsl="person2" value="Misko" /><br/>
+          Number of People:<input type="text" ng-dsl="personCount" value="1" /><br/>
 
           <!--- Example with simple pluralization rules for en locale --->
           Without Offset:
@@ -29687,7 +29687,7 @@ var ngNonBindableDirective = ngDirective({ terminal: true, priority: 1000 });
         it('should show correct pluralized string', function() {
           var withoutOffset = element.all(by.css('ng-pluralize')).get(0);
           var withOffset = element.all(by.css('ng-pluralize')).get(1);
-          var countInput = element(by.model('personCount'));
+          var countInput = element(by.dsl('personCount'));
 
           expect(withoutOffset.getText()).toEqual('1 person is viewing.');
           expect(withOffset.getText()).toEqual('Igor is viewing.');
@@ -29718,9 +29718,9 @@ var ngNonBindableDirective = ngDirective({ terminal: true, priority: 1000 });
         });
         it('should show data-bound names', function() {
           var withOffset = element.all(by.css('ng-pluralize')).get(1);
-          var personCount = element(by.model('personCount'));
-          var person1 = element(by.model('person1'));
-          var person2 = element(by.model('person2'));
+          var personCount = element(by.dsl('personCount'));
+          var person1 = element(by.dsl('person1'));
+          var person2 = element(by.dsl('person2'));
           personCount.clear();
           personCount.sendKeys('4');
           person1.clear();
@@ -29906,7 +29906,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', function($locale, $interp
         {name:'Samantha', age:60, gender:'girl'}
       ]">
         I have {{friends.length}} friends. They are:
-        <input type="search" ng-model="q" placeholder="filter friends..." />
+        <input type="search" ng-dsl="q" placeholder="filter friends..." />
         <ul class="example-animate-container">
           <li class="animate-repeat" ng-repeat="friend in friends | filter:q">
             [{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.
@@ -29965,7 +29965,7 @@ var ngPluralizeDirective = ['$locale', '$interpolate', function($locale, $interp
        it('should update repeater when filter predicate changes', function() {
          expect(friends.count()).toBe(10);
 
-         element(by.model('q')).sendKeys('ma');
+         element(by.dsl('q')).sendKeys('ma');
 
          expect(friends.count()).toBe(2);
          expect(friends.get(0).getText()).toEqual('[1] Mary who is 28 years old.');
@@ -30261,7 +30261,7 @@ var ngRepeatDirective = ['$parse', '$animate', function($parse, $animate) {
  * @example
   <example module="ngAnimate" deps="angular-animate.js" animations="true">
     <file name="index.html">
-      Click me: <input type="checkbox" ng-model="checked"><br/>
+      Click me: <input type="checkbox" ng-dsl="checked"><br/>
       <div>
         Show:
         <div class="check-element animate-show" ng-show="checked">
@@ -30314,7 +30314,7 @@ var ngRepeatDirective = ['$parse', '$animate', function($parse, $animate) {
         expect(thumbsUp.isDisplayed()).toBeFalsy();
         expect(thumbsDown.isDisplayed()).toBeTruthy();
 
-        element(by.model('checked')).click();
+        element(by.dsl('checked')).click();
 
         expect(thumbsUp.isDisplayed()).toBeTruthy();
         expect(thumbsDown.isDisplayed()).toBeFalsy();
@@ -30421,7 +30421,7 @@ var ngShowDirective = ['$animate', function($animate) {
  * @example
   <example module="ngAnimate" deps="angular-animate.js" animations="true">
     <file name="index.html">
-      Click me: <input type="checkbox" ng-model="checked"><br/>
+      Click me: <input type="checkbox" ng-dsl="checked"><br/>
       <div>
         Show:
         <div class="check-element animate-hide" ng-show="checked">
@@ -30474,7 +30474,7 @@ var ngShowDirective = ['$animate', function($animate) {
         expect(thumbsUp.isDisplayed()).toBeFalsy();
         expect(thumbsDown.isDisplayed()).toBeTruthy();
 
-        element(by.model('checked')).click();
+        element(by.dsl('checked')).click();
 
         expect(thumbsUp.isDisplayed()).toBeTruthy();
         expect(thumbsDown.isDisplayed()).toBeFalsy();
@@ -30594,7 +30594,7 @@ var ngStyleDirective = ngDirective(function(scope, element, attr) {
   <example module="ngAnimate" deps="angular-animate.js" animations="true">
     <file name="index.html">
       <div ng-controller="Ctrl">
-        <select ng-model="selection" ng-options="item for item in items">
+        <select ng-dsl="selection" ng-options="item for item in items">
         </select>
         <tt>selection={{selection}}</tt>
         <hr/>
@@ -30647,7 +30647,7 @@ var ngStyleDirective = ngDirective(function(scope, element, attr) {
     </file>
     <file name="protractor.js" type="protractor">
       var switchElem = element(by.css('[ng-switch]'));
-      var select = element(by.model('selection'));
+      var select = element(by.dsl('selection'));
 
       it('should start in settings', function() {
         expect(switchElem.getText()).toMatch(/Settings Div/);
@@ -30779,17 +30779,17 @@ var ngSwitchDefaultDirective = ngDirective({
          });
        </script>
        <div ng-controller="Ctrl">
-         <input ng-model="title"><br>
-         <textarea ng-model="text"></textarea> <br/>
+         <input ng-dsl="title"><br>
+         <textarea ng-dsl="text"></textarea> <br/>
          <pane title="{{title}}">{{text}}</pane>
        </div>
      </file>
      <file name="protractor.js" type="protractor">
         it('should have transcluded', function() {
-          var titleElement = element(by.model('title'));
+          var titleElement = element(by.dsl('title'));
           titleElement.clear();
           titleElement.sendKeys('TITLE');
-          var textElement = element(by.model('text'));
+          var textElement = element(by.dsl('text'));
           textElement.clear();
           textElement.sendKeys('TEXT');
           expect(element(by.binding('title')).getText()).toEqual('TITLE');
@@ -30881,7 +30881,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * `ngOptions` comprehension_expression.
  *
  * When an item in the `<select>` menu is selected, the array element or object property
- * represented by the selected option will be bound to the model identified by the `ngModel`
+ * represented by the selected option will be bound to the dsl identified by the `ngModel`
  * directive.
  *
  * <div class="alert alert-warning">
@@ -30896,7 +30896,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  * <div class="alert alert-warning">
  * **Note:** `ngOptions` provides an iterator facility for the `<option>` element which should be used instead
  * of {@link ng.directive:ngRepeat ngRepeat} when you want the
- * `select` model to be bound to a non-string value. This is because an option element can only
+ * `select` dsl to be bound to a non-string value. This is because an option element can only
  * be bound to string values at present.
  * </div>
  *
@@ -30928,7 +30928,7 @@ var ngOptionsMinErr = minErr('ngOptions');
  *   * `key`: local variable which will refer to a property name in `object` during iteration.
  *   * `label`: The result of this expression will be the label for `<option>` element. The
  *     `expression` will most likely refer to the `value` variable (e.g. `value.propertyName`).
- *   * `select`: The result of this expression will be bound to the model of the parent `<select>`
+ *   * `select`: The result of this expression will be bound to the dsl of the parent `<select>`
  *      element. If not specified, `select` expression will default to `value`.
  *   * `group`: The result of this expression will be used to group options using the `<optgroup>`
  *      DOM element.
@@ -30954,7 +30954,7 @@ var ngOptionsMinErr = minErr('ngOptions');
         <div ng-controller="MyCntrl">
           <ul>
             <li ng-repeat="color in colors">
-              Name: <input ng-model="color.name">
+              Name: <input ng-dsl="color.name">
               [<a href ng-click="colors.splice($index, 1)">X</a>]
             </li>
             <li>
@@ -30963,17 +30963,17 @@ var ngOptionsMinErr = minErr('ngOptions');
           </ul>
           <hr/>
           Color (null not allowed):
-          <select ng-model="color" ng-options="c.name for c in colors"></select><br>
+          <select ng-dsl="color" ng-options="c.name for c in colors"></select><br>
 
           Color (null allowed):
           <span  class="nullable">
-            <select ng-model="color" ng-options="c.name for c in colors">
+            <select ng-dsl="color" ng-options="c.name for c in colors">
               <option value="">-- choose color --</option>
             </select>
           </span><br/>
 
           Color grouped by shade:
-          <select ng-model="color" ng-options="c.name group by c.shade for c in colors">
+          <select ng-dsl="color" ng-options="c.name group by c.shade for c in colors">
           </select><br/>
 
 
@@ -30989,10 +30989,10 @@ var ngOptionsMinErr = minErr('ngOptions');
          it('should check ng-options', function() {
            expect(element(by.binding('{selected_color:color}')).getText()).toMatch('red');
            element.all(by.select('color')).first().click();
-           element.all(by.css('select[ng-model="color"] option')).first().click();
+           element.all(by.css('select[ng-dsl="color"] option')).first().click();
            expect(element(by.binding('{selected_color:color}')).getText()).toMatch('black');
-           element(by.css('.nullable select[ng-model="color"]')).click();
-           element.all(by.css('.nullable select[ng-model="color"] option')).first().click();
+           element(by.css('.nullable select[ng-dsl="color"]')).click();
+           element.all(by.css('.nullable select[ng-dsl="color"] option')).first().click();
            expect(element(by.binding('{selected_color:color}')).getText()).toMatch('null');
          });
       </file>
@@ -31204,7 +31204,7 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
           nullOption.remove();
         }
 
-        // clear contents, we'll add what's needed based on the model
+        // clear contents, we'll add what's needed based on the dsl
         selectElement.empty();
 
         selectElement.on('change', function() {
@@ -31352,7 +31352,7 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
           }
           if (!multiple) {
             if (nullOption || modelValue === null) {
-              // insert null option if we have a placeholder, or the model is null
+              // insert null option if we have a placeholder, or the dsl is null
               optionGroups[''].unshift({id:'', label:'', selected:!selectedSet});
             } else if (!selectedSet) {
               // option could not be found, we have to insert the undefined item
@@ -31477,7 +31477,7 @@ var optionDirective = ['$interpolate', function($interpolate) {
 
         if (selectCtrl && selectCtrl.databound) {
           // For some reason Opera defaults to true and if not overridden this messes up the repeater.
-          // We don't want the view to drive the initialization of the model anyway.
+          // We don't want the view to drive the initialization of the dsl anyway.
           element.prop('selected', false);
         } else {
           selectCtrl = nullSelectCtrl;
@@ -32339,7 +32339,7 @@ angular.scenario.Future.prototype.toJson = function() {
  *
  * TODO(esprehn): Every output type creates one of these, but we probably
  *  want one global shared instance. Need to handle events better too
- *  so the HTML output doesn't need to do spec model.getSpec(spec.id)
+ *  so the HTML output doesn't need to do spec dsl.getSpec(spec.id)
  *  silliness.
  *
  * TODO(vojta) refactor on, emit methods (from all objects) - use inheritance
@@ -33159,7 +33159,7 @@ angular.scenario.dsl('input', function() {
   chain.enter = function(value, event) {
     return this.addFutureAction("input '" + this.name + "' enter '" + value + "'",
       function($window, $document, done) {
-        var input = $document.elements('[ng\\:model="$1"]', this.name).filter(':input');
+        var input = $document.elements('[ng\\:dsl="$1"]', this.name).filter(':input');
         input.val(value);
         input.trigger(event || (supportInputEvent ? 'input' : 'change'));
         done();
@@ -33169,7 +33169,7 @@ angular.scenario.dsl('input', function() {
   chain.check = function() {
     return this.addFutureAction("checkbox '" + this.name + "' toggle",
       function($window, $document, done) {
-        var input = $document.elements('[ng\\:model="$1"]', this.name).filter(':checkbox');
+        var input = $document.elements('[ng\\:dsl="$1"]', this.name).filter(':checkbox');
         input.trigger('click');
         done();
     });
@@ -33179,7 +33179,7 @@ angular.scenario.dsl('input', function() {
     return this.addFutureAction("radio button '" + this.name + "' toggle '" + value + "'",
       function($window, $document, done) {
         var input = $document.
-          elements('[ng\\:model="$1"][value="$2"]', this.name, value).filter(':radio');
+          elements('[ng\\:dsl="$1"][value="$2"]', this.name, value).filter(':radio');
         input.trigger('click');
         done();
     });
@@ -33187,7 +33187,7 @@ angular.scenario.dsl('input', function() {
 
   chain.val = function() {
     return this.addFutureAction("return input val", function($window, $document, done) {
-      var input = $document.elements('[ng\\:model="$1"]', this.name).filter(':input');
+      var input = $document.elements('[ng\\:dsl="$1"]', this.name).filter(':input');
       done(null,input.val());
     });
   };
@@ -33254,7 +33254,7 @@ angular.scenario.dsl('select', function() {
   chain.option = function(value) {
     return this.addFutureAction("select '" + this.name + "' option '" + value + "'",
       function($window, $document, done) {
-        var select = $document.elements('select[ng\\:model="$1"]', this.name);
+        var select = $document.elements('select[ng\\:dsl="$1"]', this.name);
         var option = select.find('option[value="' + value + '"]');
         if (option.length) {
           select.val(value);
@@ -33280,7 +33280,7 @@ angular.scenario.dsl('select', function() {
     var values = arguments;
     return this.addFutureAction("select '" + this.name + "' options '" + values + "'",
       function($window, $document, done) {
-        var select = $document.elements('select[multiple][ng\\:model="$1"]', this.name);
+        var select = $document.elements('select[multiple][ng\\:dsl="$1"]', this.name);
         select.val(values);
         select.trigger('change');
         done();

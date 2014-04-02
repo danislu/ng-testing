@@ -1,13 +1,13 @@
-var GUIDGenerator = (function () {
-    function GUIDGenerator() {
+var Guid = (function () {
+    function Guid() {
     }
-    GUIDGenerator.S4 = function () {
+    Guid.S4 = function () {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
 
-    GUIDGenerator.CreateGUID = function () {
+    Guid.CreateGUID = function () {
         return (this.S4() + this.S4() + "-" + this.S4() + "-" + this.S4() + "-" + this.S4() + "-" + this.S4() + this.S4() + this.S4());
     };
-    return GUIDGenerator;
+    return Guid;
 })();
-//# sourceMappingURL=guidgenerator.js.map
+//# sourceMappingURL=guid.js.map
